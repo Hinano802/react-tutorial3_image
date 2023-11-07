@@ -5,6 +5,9 @@ export default function App() {
         src: "images/pic1.jpg",
         alt: "Closeup of a human eye"
     });
+
+    const [isDark, setIsDark] = useState(false);
+
     const images = [
         {
             src: "images/pic1.jpg",
@@ -36,8 +39,14 @@ export default function App() {
             src={fullImgObj.src}
             alt={fullImgObj.alt}
           />
-          <div className="overlay"></div>
-          <button className="dark">Darken</button>
+          <div style={{backgroundColor: isDark ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0)"}} className="overlay"></div>
+          <button onClick={() => {
+            if(isDark){
+                setIsDark(false);
+            } else {
+                setIsDark(true);
+            }
+          }} className="dark">{isDark ? "Lighten" : "Darken"} </button>
         </div>
         <div className="thumb-bar">
             {images.map((pic) => {
