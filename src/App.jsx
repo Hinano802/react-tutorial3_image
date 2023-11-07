@@ -1,4 +1,10 @@
+import { useState } from "react";
+
 export default function App() {
+    const [fullImgObj, setFullImgObj] = useState({
+        src: "images/pic1.jpg",
+        alt: "Closeup of a human eye"
+    });
     const images = [
         {
             src: "images/pic1.jpg",
@@ -27,8 +33,8 @@ export default function App() {
         <div className="full-img">
           <img
             className="displayed-img"
-            src="images/pic1.jpg"
-            alt="Closeup of a human eye"
+            src={fullImgObj.src}
+            alt={fullImgObj.alt}
           />
           <div className="overlay"></div>
           <button className="dark">Darken</button>
@@ -36,7 +42,12 @@ export default function App() {
         <div className="thumb-bar">
             {images.map((pic) => {
                 return(
-                    <img key={pic.src} src={pic.src} alt={pic.alt} />
+                    <img onClick={() => {
+                        setFullImgObj(pic);
+                    }}
+                    key={pic.src}
+                    src={pic.src}
+                    alt={pic.alt} />
                 )
             })}
         </div>
